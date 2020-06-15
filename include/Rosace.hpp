@@ -5,5 +5,7 @@
 #include "Vector3.hpp"
 
 #include "Card.hpp"
+#include "Deck.hpp"
+#include "IMovable.hpp"
 
 #endif
