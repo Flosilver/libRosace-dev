@@ -1,0 +1,101 @@
+@startuml UML
+
+class IMovable{
+    + move( v : Vect2f& ): void
+    + moveTo( v : Vect2f& ): void
+}
+
+
+class Vector2 {
+    + x : T
+    + y : T 
+
+    + Vector2()
+    + Vector2( aX : T&, aY : T&)
+    + Vector2( v : Vector2<T>)
+    + ~Vector2()
+
+    + operator=( v : Vector2<T>& ): Vector2<T>&
+    + operator==( v : Vector2<T>& ): bool
+    + operator!=( v : Vector2<T>& ): bool
+    + operator<( v : Vector2<T>& ): bool
+    + operator<=( v : Vector2<T>& ): bool
+    + operator>( v : Vector2<T>& ): bool
+    + operator>=( v : Vector2<T>& ): bool
+
+    + operator+=( v : Vector2<T>& ): Vector2<T>&
+    + operator-=( v : Vector2<T>& ): Vector2<T>&
+    + operator+( v : Vector2<T>& ): Vector2<T>
+    + operator-( v : Vector2<T>& ): Vector2<T>
+    + operator*( v : Vector2<T>& ): T
+    + operator*( t : T ): Vector2<T>
+
+    + operator<<( ofs : ostream&, v : Vector2<T>& ): ostream&
+    + operator>>( ifs : istream&, v : Vector2<T>& ): istream&
+}
+
+class Vector3 {
+    + x : T
+    + y : T 
+    + z : T
+
+    + Vector3()
+    + Vector3( aX : T&, aY : T&)
+    + Vector3( v : Vector3<T>)
+    + ~Vector3()
+
+    + operator=( v : Vector3<T>& ): Vector3<T>&
+    + operator==( v : Vector3<T>& ): bool
+    + operator!=( v : Vector3<T>& ): bool
+    + operator<( v : Vector3<T>& ): bool
+    + operator<=( v : Vector3<T>& ): bool
+    + operator>( v : Vector3<T>& ): bool
+    + operator>=( v : Vector3<T>& ): bool
+
+    + operator+=( v : Vector3<T>& ): Vector3<T>&
+    + operator-=( v : Vector3<T>& ): Vector3<T>&
+    + operator+( v : Vector3<T>& ): Vector3<T>
+    + operator-( v : Vector3<T>& ): Vector3<T>
+    + operator*( v : Vector3<T>& ): T
+    + operator*( t : T ): Vector3<T>
+
+    + operator<<( ofs : ostream&, v : Vector3<T>& ): ostream&
+    + operator>>( ifs : istream&, v : Vector2<T>& ): istream&
+}
+
+
+class Card
+{
+    # size : Vect2f
+    # id : int
+
+    + Card()
+    + Card( aX : flaot, )
+}
+
+class Deck{
+
+}
+
+class Player{
+
+}
+
+class Pion{
+
+}
+
+
+
+
+Card "1" *-- "1" Vector2
+Card <|-- IMovable
+
+Deck "1" *-- "0..n" Card
+
+Pion <|-- IMovable
+
+Player "1" *-- "1" Pion
+Player "1" *-- "1" Deck
+
+@enduml
