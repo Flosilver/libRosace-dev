@@ -2,7 +2,7 @@
 #define GAME_HPP
 
 #include "Player.hpp"
-#include <list>
+#include <vector>
 
 namespace rsc
 {
