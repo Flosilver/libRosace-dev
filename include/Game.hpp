@@ -18,6 +18,8 @@ class Game
     public:
         int state;                          // game's state
 
+        Game(): deck(Deck()), discard(Deck()) {}
+
 
         /* Operateurs */
 
