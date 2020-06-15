@@ -1,6 +1,6 @@
 @startuml UML
 
-class IMovable{
+interface IMovable{
     + move( v : Vect2f& ): void
     + moveTo( v : Vect2f& ): void
 }
@@ -70,7 +70,29 @@ class Card
     # id : int
 
     + Card()
-    + Card( aX : flaot, )
+    + Card( aX : float, aY : float )
+    + Card( v : Vect2f& )
+    + Card( aX : float, aY : float, aId : int )
+    + Card( v: Vect2f&, aId : int )
+    + Card( aX : float, aY : float, aValue : float )
+    + Card( v : Vect2f&, aValue : float )
+    + Card( aX : float, aY : float, aId : int, aValue : float)
+    + Card( v : Vect2f&, aId : int, aValue : float )
+    + Card( aX : float, aY : float, aPos : Vect2f& )
+    + Card( v : Vect2f&, aPos : Vect2f& )
+    + Card( aX : float, aY : float, aId : int, aPos : Vect2f& )
+    + Card( v : Vect2f&, aId : int, aPos : Vect2f& )
+    + Card( aX : float, aY : float, aId : int, aValue : float, aPos : Vect2f& )
+    + Card( v : Vect2f&, aId : int, aValue : float, aPos : Vect2f& )
+    + ~Card()
+
+    + operator=( c : Card&): Card&
+    
+    + getSize(): Vect2f&
+    + getId(): int&
+
+    + move( v : Vect2f& ): void
+    + moveTo( v : Vect2f& ): void
 }
 
 class Deck{
