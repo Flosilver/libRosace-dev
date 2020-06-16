@@ -46,8 +46,10 @@ class Card : public IMovable
         Card& operator=(const Card& c);
 
         /* accesseur */
-        const Vect2f& getSize() const {return size;}
         const int& getId() const {return id;}
+        const float& getValue() const {return value;}
+        const Vect2f& getSize() const {return size;}
+        const Vect2f& getPosition() const {return position;}
 
         /* Méthodes de IMovable */
         void move(const Vect2f& v);

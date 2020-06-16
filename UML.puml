@@ -1,8 +1,8 @@
 @startuml UML
 
 interface IMovable{
-    + move( v : Vect2f& ): void
-    + moveTo( v : Vect2f& ): void
+    + {abstract} move( v : Vect2f& ): void
+    + {abstract} moveTo( v : Vect2f& ): void
 }
 
 
@@ -66,8 +66,10 @@ class Vector3 {
 
 class Card
 {
-    # size : Vect2f
     # id : int
+    # value : float
+    # size : Vect2f
+    # position : Vect2f
 
     + Card()
     + Card( aX : float, aY : float )
@@ -96,28 +98,94 @@ class Card
 }
 
 class Deck{
+    # size : int
+    # pile : list<Card*>
 
+    + Deck()
+    + Deck( d : Deck& )
+    + ~Deck
+
+    + operator=( d : Deck& ): Deck&
+    + operator[]( i : size_t ): Card&
+
+    + getSize(): int
+
+    + add_front( c : Card* ): void
+    + add_back( c : Card* ): void
+    + pick_up(): Card*
+    + give_front(): void
+    + give_back(): void
+    + shuffle(): void
 }
 
 class Player{
+    # name : string
+    # id : int
+    # pawn : Pawn
+    # hand : Deck
+    
+    + Player( n : string )
+    + Player( n : string, aId : int, pa : Pawn&)
+    + Player( n : string, aId : int, d : Deck&)
+    + Player( n : string, aId : int, pa : Pawn&, d : Deck&)
+    + ~Player()
 
+    + operator=( p : Player&): Player&
+
+    + getName(): string&
+    + getId(): int&
+    + getPawn(): Pawn&
+    + getPosition(): Vect2f&
+    + getHand(): Deck&
+
+    + login(): void
+    + logout(): void
+    + movePawn(): void
+    + movePawnTo(): void
 }
 
-class Pion{
+class Pawn{
+    # position : Vect2f
 
+    + Pawn()
+    + Pawn( pos : Vect2f& )
+    + Pawn( aX : float, aY : float )
+    + ~Pawn()
+
+    + operator=( p : Pawn& ): Pawn&
+
+    + getPosition(): Vect2f&
+    + move( v : Vect2f& ): void
+    + moveTo( v : Vect2f& ): void
 }
 
+class Game{
+    + state : int
+    + deck : Deck
+    + discard : Deck
+    + player : vector<Player*>
 
+    + Game()
+    + ~Game()
+
+    + operator=( g : Game& ): Game&
+    + operator[]( i : size_t ): Player*
+
+    + setState( s : int ): void
+}
+
+IMovable --|> Card
+IMovable --|> Pawn
 
 
 Card "1" *-- "1" Vector2
-Card <|-- IMovable
 
 Deck "1" *-- "0..n" Card
 
-Pion <|-- IMovable
-
-Player "1" *-- "1" Pion
+Player "1" *-- "1" Pawn
 Player "1" *-- "1" Deck
+
+Game "4" *-- "1" Player
+Game "2" *-- "1" Deck
 
 @enduml

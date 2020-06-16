@@ -11,9 +11,9 @@ void Player::logout(){
 }
 
 void Player::movePawn(const vect2f& v){
-  p.move(const vect2f& v);
+  p.move(const Vect2f& v);
 }
 
 void Player::movePawnTo(const vect2f& v){
-  p.moveTo(const vect2f& v);
+  p.moveTo(const Vect2f& v);
 }
