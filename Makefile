@@ -23,7 +23,7 @@ CFLAGS := -g -Wall
 LDFLAGS := 
 LIBS := 		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 
-.PHONY: all clean
+.PHONY: all clean mrproper remake
 
 all: $(EXE) 		#$(TEST)
 

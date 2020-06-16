@@ -11,8 +11,7 @@ namespace rsc
 class Game
 {
     protected:
-
-
+    
     public:
         int state;                                                  // game's state
         std::vector<Player*> players = std::vector<Player*>(4);     // list of 4 players
