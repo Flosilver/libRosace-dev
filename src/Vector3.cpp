@@ -10,7 +10,7 @@ Vector3<T>::Vector3(){
 }
 
 template<typename T>
-Vector3<T>::Vector3(T& aX, T& aY, T& z){
+Vector3<T>::Vector3(T& aX, T& aY, T& aZ){
     x = aX;
     y = aY;
     z = aZ;

@@ -1,4 +1,5 @@
-EXE := main
+LIB_NAME := libRosace
+NEW_LIB := libRosace.a
 #TEST := test_catch
 
 # code
@@ -19,17 +20,18 @@ OBJ := $(addprefix $(OBJ_DIR)/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
 # dependances
 CC := g++
 INCLUDE := -Iinclude
-CFLAGS := -g -Wall
+CFLAGS := -g -Wall -std=c++11
 LDFLAGS := 
 LIBS := 		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 
 .PHONY: all clean mrproper remake
 
-all: $(EXE) 		#$(TEST)
+all: $(LIB_NAME)
 
 # Executable
-$(EXE): $(OBJ)
-	$(CC) $^ $(LIBS) $(INCLUDE) # -o $@
+$(LIB_NAME): $(OBJ)
+	ar -r $(NEW_LIB) $^
+	ranlib $(NEW_LIB)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
@@ -51,10 +53,8 @@ $(OBJ_DIR):
 
 clean:
 	rm -rf $(OBJ)
-	#rm -rf $(OBJ_TEST)
 	
 mrproper: clean
-	#rm -rf $(EXE) 
-	#$(TEST)
+	rm -rf $(NEW_LIB)
 
 remake: mrproper all

@@ -17,6 +17,8 @@ Game& Game::operator=(const Game& g){
     discard = g.discard;
     state = g.state;
     players = g.players;
+
+    return *this;
 }
 
 /* Accesseurs */

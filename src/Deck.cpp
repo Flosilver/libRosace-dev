@@ -12,23 +12,26 @@ Deck::Deck(const Deck& d){
 }
 
 Deck::~Deck(){
-    for(list<Card*>::iterator it = pile.begin() ; it != pile.end() ; ++it){
+    /*for(list<sp_Card>::iterator it = pile.begin() ; it != pile.end() ; ++it){
         delete *it;
-    }
+    }*/
     pile.clear();
 }
 
 Deck& Deck::operator=(const Deck& d){
-    for(list<Card*>::const_iterator it = d.pile.begin() ; it != d.pile.end() ; ++it){
+    /*for(list<sp_Card>::const_iterator it = d.pile.begin() ; it != d.pile.end() ; ++it){
         pile.push_back(*it);
+    }*/
+    for (sp_Card spc : pile){
+        pile.push_back(spc);
     }
     size = d.size;
 
     return *this;
 }
 
-Card* Deck::operator[](size_t i) const{
-    list<Card*>::const_iterator it = pile.begin();
+sp_Card Deck::operator[](size_t i) const{
+    list<sp_Card>::const_iterator it = pile.begin();
     advance(it, i);
     // If the indicator of the asked Card is bigger than the size of the pile, then the last Card is returned.
     if(i >= size){
@@ -37,9 +40,9 @@ Card* Deck::operator[](size_t i) const{
     return *it;
 }
 
-void Deck::add(Card* c, int loc){
+void Deck::add(sp_Card c, int loc){
     
-    list<Card*>::iterator it = pile.begin();
+    list<sp_Card>::iterator it = pile.begin();
     switch(loc){
         case TOP:
             pile.push_front(c);
@@ -69,19 +72,17 @@ void Deck::add(Card* c, int loc){
     }
 }
 
-/*void Deck::add_bottom(Card* c){
+/*void Deck::add_bottom(sp_Card c){
     pile.push_back(c);
     size++;
 }*/
 
-Card* Deck::pick_up(){
-    if (pile.size() == 0){
-        return NULL;
-    }
-
-    list<Card*>::iterator it = pile.begin();
+sp_Card Deck::pick_up(){
+    if (pile.empty())
+        return nullptr;
+    sp_Card c = pile.front(); // renvoie par référence le premier élément
     pile.pop_front();
-    return *it;
+    return c;
 }
 
 void Deck::give_to(size_t i, Deck& d, int loc){
@@ -90,9 +91,9 @@ void Deck::give_to(size_t i, Deck& d, int loc){
         return;
     }
 
-    Card* target = (*this)[i];
-    /*Card* pc;
-    for(list<Card*>::iterator it = pile.begin() ; it != pile.end() ; ++it){
+    /*sp_Card target = (*this)[i];
+    sp_Card pc;
+    for(list<sp_Card>::iterator it = pile.begin() ; it != pile.end() ; ++it){
         pc = *it;
         if ( pc->getId() == i ){
             target = *it;
@@ -100,6 +101,12 @@ void Deck::give_to(size_t i, Deck& d, int loc){
             break;
         }
     }*/
+    
+    list<sp_Card>::iterator it = pile.begin();
+    advance(it,i);
+    sp_Card target = *it;
+    pile.erase(it);
+
 
     if(target != NULL){
         switch(loc){
@@ -126,28 +133,15 @@ void Deck::give_to(size_t i, Deck& d, int loc){
     }
 }
 
-/*void Deck::give_back(int aId, Deck& d){
-    if (pile.size() == 0){
-        cout << "No Card to give" << endl;
-        return;
-    }
-
-    Card* target = NULL;
-    Card* pc;
-    for(list<Card*>::iterator it = pile.begin() ; it != pile.end() ; ++it){
-        pc = *it;
-        if ( pc->getId() == aId ){
-            target = *it;
-            pile.erase(it);
-            break;
-        }
-    }
-
-    if(target != NULL){
-        d.add_back(target);
-    }
-}*/
 
 void Deck::shuffle(){
-    random_shuffle(pile.begin(), pile.end());
+    if (!pile.empty()){
+        int haz;
+        sp_Card temp;
+        for ( sp_Card spc : pile ){
+            haz = rand() % size;
+            temp = (*this)[haz];
+            spc.swap(temp);
+        }
+    }
 }

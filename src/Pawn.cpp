@@ -22,6 +22,8 @@ Pawn::~Pawn() {}
 /* Operateurs */
 Pawn& Pawn::operator=(const Pawn& p){
   position = p.position;
+
+  return *this;
 }
 /* Accesseur */
 const Vect2f& Pawn::getPosition() const {

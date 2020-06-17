@@ -18,8 +18,8 @@ class Vector3
         Vector3();//: x(0), y(0), z(0) {}
         Vector3(T& aX, T& aY, T& aZ);//: x(aX), y(aY), z(aZ) {}
         Vector3(const Vector3<T>& v);//: x(v.x), y(v.y), z(v.z) {}
-        ~Vector3() {}
-
+        ~Vector3();
+        
         /* Opérateurs */
         Vector3<T>& operator=(const Vector3<T>& v);
         bool operator==(const Vector3<T>& v) const;
