@@ -19,7 +19,7 @@ class Game
         Deck discard;                                               // a deck were we put used cards
         // abstract field for different types of map
 
-        Game(): deck(Deck()), discard(Deck()) {}
+        Game();
         ~Game() {}
 
 
@@ -27,12 +27,12 @@ class Game
         Game& operator=(const Game& g);
 
         /* accesseur */
-        /*const int& getState() const {return state;}
-        const Deck& getDeck() const {return deck;}
-        const Deck& getDiscard() const {return discard;}
-        const Player* getPlayer(int id) const {return players[id];}*/
+        const int& getState() const;
+        const Deck& getDeck() const;
+        const Deck& getDiscard() const;
+        const Player* getPlayer(int id) const;
 
-        void setState(const int s) {state = s;}
+        void setState(const int s);
 
         /* méthode */
 
