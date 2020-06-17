@@ -38,8 +38,8 @@ class Vector2
         Vector2<T> operator*(T t) const;
 
         /* Flux */
-        friend std::ostream& operator<<(std::ostream& ofs, const Vector2<T>& v);
-        friend std::istream& operator>>(std::istream& ifs, Vector2<T>& v);
+        //friend std::ostream& operator<<(std::ostream& ofs, const Vector2<T>& v);
+        //friend std::istream& operator>>(std::istream& ifs, Vector2<T>& v);
 };
 
 // Define the most common types

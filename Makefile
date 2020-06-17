@@ -25,7 +25,7 @@ LIBS := 		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-aud
 
 .PHONY: all clean mrproper remake
 
-all: $(EXE) 		#$(TEST)
+#all: $(EXE) 		#$(TEST)
 
 # Executable
 #$(EXE): $(OBJ)

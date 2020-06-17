@@ -39,8 +39,8 @@ class Vector3
         Vector3<T> operator*(T t) const;
 
         /* Flux */
-        friend std::ostream& operator<<(std::ostream& ofs, const Vector3<T>& v);
-        friend std::istream& operator>>(std::istream& ifs, Vector3<T>& v);
+        //friend std::ostream& operator<<(std::ostream& ofs, const Vector3<T>& v);
+        //friend std::istream& operator>>(std::istream& ifs, Vector3<T>& v);
 };
 
 // Define the most common types

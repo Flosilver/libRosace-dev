@@ -123,15 +123,15 @@ Vector3<T> Vector3<T>::operator*(T t) const{
 }
 
 /* Flux Opérateur << */
-template<typename T>
+/*template<typename T>
 std::ostream& operator<<(std::ostream& ofs, const Vector3<T>& v){
     ofs << "[" << v.x << ":" << v.y << ":" << v.z << "]";
     return ofs;
-}
+}*/
 
 /* Flux Operateur >> */
-template<typename T>
+/*template<typename T>
 std::istream& operator>>(std::istream& ifs, Vector3<T>& v){
     ifs >> v.x >> v.y >> v.z;
     return ifs;
-}
+}*/

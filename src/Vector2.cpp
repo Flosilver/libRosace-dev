@@ -117,15 +117,15 @@ Vector2<T> Vector2<T>::operator*(T t) const{
 }
 
 /* Flux Opérateur << */
-template<typename T>
+/*template<typename T>
 std::ostream& operator<<(std::ostream& ofs, const Vector2<T>& v){
     ofs << "[" << v.x << ":" << v.y << "]";
     return ofs;
-}
+}*/
 
 /* Flux Operateur >> */
-template<typename T>
+/*template<typename T>
 std::istream& operator>>(std::istream& ifs, Vector2<T>& v){
     ifs >> v.x >> v.y;
     return ifs;
-}
+}*/
