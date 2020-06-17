@@ -14,9 +14,9 @@ class Vector2
         T y;
 
         /* Constructeurs et destructeurs */
-        Vector2(): x(0), y(0) {}
-        Vector2(T& aX, T& aY): x(aX), y(aY) {}
-        Vector2(const Vector2<T>& v): x(v.x), y(v.y) {}
+        Vector2();
+        Vector2(T& aX, T& aY);
+        Vector2(const Vector2<T>& v);
         ~Vector2() {}
 
         /* Opérateurs */

@@ -21,7 +21,7 @@ class Pawn : public IMovable
         Pawn& operator=(const Pawn& p);
 
         /* accesseur */
-        const Vect2f& getPosition() const {return position;}
+        const Vect2f& getPosition() const;
 
         /* méthode de IMovable */
         void move(const Vect2f& v);

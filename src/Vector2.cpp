@@ -2,6 +2,26 @@
 
 using namespace rsc;
 
+/* Constructeur */
+template<typename T>
+Vector2<T>::Vector2(){
+    x = 0;
+    y = 0;
+}
+
+template<typename T>
+Vector2<T>::Vector2(T& aX, T& aY){
+    x = aX;
+    y = aY;
+}
+
+template<typename T>
+Vector2<T>::Vector2(const Vector2<T>& v){
+    x = v.x;
+    y = v.y;
+}
+
+
 /* Operateur = */
 template<typename T>
 Vector2<T>& Vector2<T>::operator=(const Vector2<T>& v){

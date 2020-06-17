@@ -11,28 +11,28 @@ namespace rsc
 class Player
 {
     protected:
-        std::string name; // player name
-        int id;           // player ID 0,1,2,3
-        Pawn pawn;           // player's pawn
-        Deck hand;        // player's hand
+        std::string name;       // player name
+        int id;                 // player ID 0,1,2,3
+        Pawn pawn;              // player's pawn
+        Deck hand;              // player's hand
 
     public:
-        Player(): name(""), id(0), pawn(), hand() {}
-        Player(std::string n): name(n), id(0), pawn(), hand() {}
-        Player(std::string n, int aId, Pawn& pa): name(n), id(aId), pawn(pa), hand(Deck()) {}
-        Player(std::string n, int aId, Deck& d): name(n), id(aId), pawn(Pawn()), hand(d) {}
-        Player(std::string n, int aId, Pawn& pa, Deck& d): name(n), id(aId), pawn(pa), hand(d) {}
+        Player();
+        Player(std::string n);
+        Player(std::string n, int aId, Pawn& pa);
+        Player(std::string n, int aId, Deck& d);
+        Player(std::string n, int aId, Pawn& pa, Deck& d);
         ~Player() {}
 
         /* Operateurs */
         Player& operator=(const Player& p);
 
         /* accesseur */
-        const std::string& getName() const {return name;}
-        const int& getId() const {return id;}
-        const Pawn& getPawn() const {return pawn;}
-        const Vect2f& getPosition() const {return pawn.getPosition();}
-        const Deck& getHand() const {return hand;}
+        const std::string& getName() const;
+        const int& getId() const;
+        const Pawn& getPawn() const;
+        const Vect2f& getPosition() const;
+        const Deck& getHand() const;
 
         /* méthode */
         void login();
