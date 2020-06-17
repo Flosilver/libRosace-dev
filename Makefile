@@ -1,4 +1,4 @@
-EXE := main
+#EXE := main
 #TEST := test_catch
 
 # code
@@ -28,8 +28,8 @@ LIBS := 		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-aud
 all: $(EXE) 		#$(TEST)
 
 # Executable
-$(EXE): $(OBJ)
-	$(CC) $^ -o $@ $(LIBS) $(INCLUDE)
+#$(EXE): $(OBJ)
+#	$(CC) $^ -o $@ $(LIBS) $(INCLUDE)
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
