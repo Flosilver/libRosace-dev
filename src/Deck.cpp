@@ -27,9 +27,10 @@ Deck& Deck::operator=(const Deck& d){
     return *this;
 }
 
-const Card* Deck::operator[](size_t i) const{
+Card* Deck::operator[](size_t i) const{
     list<Card*>::const_iterator it = pile.begin();
     advance(it, i);
+    // If the indicator of the asked Card is bigger than the size of the pile, then the last Card is returned.
     if(i >= size){
         it = pile.end();
     }
@@ -83,22 +84,22 @@ Card* Deck::pick_up(){
     return *it;
 }
 
-void Deck::give_to(int aId, Deck& d, int loc){
-    if (pile.size() == 0 || pile.size()-1 < aId){
+void Deck::give_to(size_t i, Deck& d, int loc){
+    if (pile.size() == 0 || pile.size()-1 < i){
         cerr << "***ERROR: Deck::give_to() : No Card to give" << endl;
         return;
     }
 
-    Card* target = NULL;
-    Card* pc;
+    Card* target = (*this)[i];
+    /*Card* pc;
     for(list<Card*>::iterator it = pile.begin() ; it != pile.end() ; ++it){
         pc = *it;
-        if ( pc->getId() == aId ){
+        if ( pc->getId() == i ){
             target = *it;
             pile.erase(it);
             break;
         }
-    }
+    }*/
 
     if(target != NULL){
         switch(loc){
@@ -148,5 +149,5 @@ void Deck::give_to(int aId, Deck& d, int loc){
 }*/
 
 void Deck::shuffle(){
-    
+    random_shuffle(pile.begin(), pile.end());
 }

@@ -3,13 +3,10 @@
 using namespace rsc;
 
 Card::Card(){
-    id = 0;
     value = 0.f;
-    size = Vect2f();
-    position = Vect2f();
 }
 
-Card::Card(float aX, float aY){
+/*Card::Card(float aX, float aY){
     id = 0;
     value = 0.f;
     size = Vect2f(aX, aY);
@@ -105,13 +102,14 @@ Card::Card(const Vect2f& aSize, int aId, float aValue, const Vect2f& aPos){
     value = aValue;
     size = aSize;
     position = aPos;
+}*/
+
+Card::Card(float aV){
+    value = aV;
 }
 
 Card::Card(const Card& c){
-    id = c.id;
     value = c.value;
-    size = c.size;
-    position = c.position;
 }
 
 Card::~Card(){}
@@ -119,34 +117,31 @@ Card::~Card(){}
 
 
 Card& Card::operator=(const Card& c){
-    id = c.id;
     value = c.value;
-    size = c.size;
-    position = c.position;
 
     return *this;
 }
 
-const int& Card::getId() const{
+/*const int& Card::getId() const{
     return id;
-}
+}*/
 
 const float& Card::getValue() const{
     return value;
 }
 
-const Vect2f& Card::getSize() const{
+/*const Vect2f& Card::getSize() const{
     return size;
 }
 
 const Vect2f& Card::getPosition() const{
     return position;
-}
+}*/
 
-void Card::move(const Vect2f& v){
+/*void Card::move(const Vect2f& v){
     position += v;
 }
 
 void Card::moveTo(const Vect2f& v){
     position = v;
-}
+}*/
