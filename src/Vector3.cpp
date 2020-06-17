@@ -2,6 +2,30 @@
 
 using namespace rsc;
 
+template<typename T>
+Vector3<T>::Vector3(){
+    x = 0;
+    y = 0;
+    z = 0;
+}
+
+template<typename T>
+Vector3<T>::Vector3(T& aX, T& aY, T& z){
+    x = aX;
+    y = aY;
+    z = aZ;
+}
+
+template<typename T>
+Vector3<T>::Vector3(const Vector3<T>& v){
+    x = v.x;
+    y = v.y;
+    z = v.z;
+}
+
+template<typename T>
+Vector3<T>::~Vector3(){}
+
 /* Operateur = */
 template<typename T>
 Vector3<T>& Vector3<T>::operator=(const Vector3<T>& v){
