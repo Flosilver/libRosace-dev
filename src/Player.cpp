@@ -38,6 +38,9 @@ Player::Player(std::string n, int aId, Pawn& pa, Deck& d){
   hand = d;
 }
 
+/* Destructeur */
+Player::~Player() {}
+
 /* Operateur = */
 Player& Player::operator=(const Player& p){
   name = p.name;

@@ -22,7 +22,7 @@ class Player
         Player(std::string n, int aId, Pawn& pa);
         Player(std::string n, int aId, Deck& d);
         Player(std::string n, int aId, Pawn& pa, Deck& d);
-        ~Player() {}
+        ~Player();
 
         /* Operateurs */
         Player& operator=(const Player& p);

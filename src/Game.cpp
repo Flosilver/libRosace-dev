@@ -8,6 +8,9 @@ Game::Game(){
     discard = Deck();
 }
 
+/* Destructeur */
+Game::~Game() {}
+
 /* Operateur */
 Game& Game::operator=(const Game& g){
     deck = g.deck;

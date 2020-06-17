@@ -17,7 +17,7 @@ class Vector2
         Vector2();
         Vector2(T& aX, T& aY);
         Vector2(const Vector2<T>& v);
-        ~Vector2() {}
+        ~Vector2();
 
         /* Opérateurs */
         Vector2<T>& operator=(const Vector2<T>& v);

@@ -20,7 +20,7 @@ class Game
         // abstract field for different types of map
 
         Game();
-        ~Game() {}
+        ~Game();
 
 
         /* Operateurs */

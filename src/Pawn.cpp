@@ -16,6 +16,9 @@ Pawn::Pawn(float aX, float aY){
   position = Vect2f(aX,aY);
 }
 
+/* Destructeur */
+Pawn::~Pawn() {}
+
 /* Operateurs */
 Pawn& Pawn::operator=(const Pawn& p){
   position = p.position;

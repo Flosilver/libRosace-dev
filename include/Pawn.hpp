@@ -15,7 +15,7 @@ class Pawn : public IMovable
         Pawn();
         Pawn(const Vect2f& pos);
         Pawn(float aX, float aY);
-        ~Pawn() {}
+        ~Pawn();
 
         /* Operateurs */
         Pawn& operator=(const Pawn& p);

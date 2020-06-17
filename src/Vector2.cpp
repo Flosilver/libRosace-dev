@@ -21,6 +21,10 @@ Vector2<T>::Vector2(const Vector2<T>& v){
     y = v.y;
 }
 
+/* Destructeur */
+template<typename T>
+Vector2<T>::~Vector2() {}
+
 
 /* Operateur = */
 template<typename T>
