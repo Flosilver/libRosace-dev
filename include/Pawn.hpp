@@ -12,9 +12,9 @@ class Pawn : public IMovable
         Vect2f position;    // position of the pawn
 
     public:
-        Pawn(): position(Vect2f()) {}
-        Pawn(const Vect2f& pos): position(pos) {}
-        Pawn(float aX, float aY): position(Vect2f(aX,aY)) {}
+        Pawn();
+        Pawn(const Vect2f& pos);
+        Pawn(float aX, float aY);
         ~Pawn() {}
 
         /* Operateurs */
