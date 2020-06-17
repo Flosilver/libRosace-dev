@@ -1,4 +1,4 @@
-#EXE := main
+EXE := main
 #TEST := test_catch
 
 # code
@@ -25,11 +25,11 @@ LIBS := 		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-aud
 
 .PHONY: all clean mrproper remake
 
-#all: $(EXE) 		#$(TEST)
+all: $(EXE) 		#$(TEST)
 
 # Executable
-#$(EXE): $(OBJ)
-#	$(CC) $^ -o $@ $(LIBS) $(INCLUDE)
+$(EXE): $(OBJ)
+	$(CC) $^ $(LIBS) $(INCLUDE) # -o $@
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
@@ -54,7 +54,7 @@ clean:
 	#rm -rf $(OBJ_TEST)
 	
 mrproper: clean
-	rm -rf $(EXE) 
+	#rm -rf $(EXE) 
 	#$(TEST)
 
 remake: mrproper all
