@@ -5,9 +5,13 @@ NEW_LIB := libRosace.a
 # code
 SRC_DIR := src
 OBJ_DIR := obj
+INCLUDE_DIR := include
+#INC_F_DIR := rosace
 
 SRC := $(wildcard $(SRC_DIR)/*.cpp)
 OBJ := $(addprefix $(OBJ_DIR)/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
+INCS := $(wildcard $(INCLUDE_DIR)/*.hpp)
+
 
 # tests
 #TEST_DIR := unit_test
@@ -32,6 +36,8 @@ all: $(LIB_NAME)
 $(LIB_NAME): $(OBJ)
 	ar -r $(NEW_LIB) $^
 	ranlib $(NEW_LIB)
+	sudo cp -i $(NEW_LIB) /usr/lib/
+	sudo cp -i $(INCS) /usr/include/c++/7*
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
