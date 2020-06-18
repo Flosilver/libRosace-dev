@@ -12,9 +12,6 @@ Deck::Deck(const Deck& d){
 }
 
 Deck::~Deck(){
-    /*for(list<sp_Card>::iterator it = pile.begin() ; it != pile.end() ; ++it){
-        delete *it;
-    }*/
     pile.clear();
 }
 
@@ -22,10 +19,11 @@ Deck& Deck::operator=(const Deck& d){
     /*for(list<sp_Card>::const_iterator it = d.pile.begin() ; it != d.pile.end() ; ++it){
         pile.push_back(*it);
     }*/
-    for (sp_Card spc : pile){
-        pile.push_back(spc);
+    pile.clear();
+    for (const sp_Card& spc : d.pile){
+        pile.push_back(make_shared<Card> (Card(*spc)));
     }
-    size = d.size;
+    size = pile.size();
 
     return *this;
 }
@@ -72,11 +70,6 @@ void Deck::add(sp_Card c, int loc){
     }
 }
 
-/*void Deck::add_bottom(sp_Card c){
-    pile.push_back(c);
-    size++;
-}*/
-
 sp_Card Deck::pick_up(){
     if (pile.empty())
         return nullptr;
@@ -86,21 +79,10 @@ sp_Card Deck::pick_up(){
 }
 
 void Deck::give_to(size_t i, Deck& d, int loc){
-    if (pile.size() == 0 || pile.size()-1 < i){
+    if (pile.empty() || pile.size()-1 < i){
         cerr << "***ERROR: Deck::give_to() : No Card to give" << endl;
         return;
     }
-
-    /*sp_Card target = (*this)[i];
-    sp_Card pc;
-    for(list<sp_Card>::iterator it = pile.begin() ; it != pile.end() ; ++it){
-        pc = *it;
-        if ( pc->getId() == i ){
-            target = *it;
-            pile.erase(it);
-            break;
-        }
-    }*/
     
     list<sp_Card>::iterator it = pile.begin();
     advance(it,i);
@@ -138,10 +120,13 @@ void Deck::shuffle(){
     if (!pile.empty()){
         int haz;
         sp_Card temp;
-        for ( sp_Card spc : pile ){
+        for ( sp_Card& spc : pile ){
             haz = rand() % size;
             temp = (*this)[haz];
             spc.swap(temp);
         }
+    }
+    else{
+        cerr << "***ERROR: Deck::shuffle() : No card to shuffle" << endl;
     }
 }

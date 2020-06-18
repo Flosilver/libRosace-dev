@@ -31,7 +31,7 @@ class Player
         const std::string& getName() const;
         const int& getId() const;
         const Pawn& getPawn() const;
-        const Vect2f& getPosition() const;
+        const Vect2f& getPawnPosition() const;
         const Deck& getHand() const;
 
         /* méthode */

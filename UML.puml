@@ -66,55 +66,34 @@ class Vector3 {
 
 class Card
 {
-    # id : int
     # value : float
-    # size : Vect2f
-    # position : Vect2f
 
     + Card()
-    + Card( aX : float, aY : float )
-    + Card( v : Vect2f& )
-    + Card( aX : float, aY : float, aId : int )
-    + Card( v: Vect2f&, aId : int )
-    + Card( aX : float, aY : float, aValue : float )
-    + Card( v : Vect2f&, aValue : float )
-    + Card( aX : float, aY : float, aId : int, aValue : float)
-    + Card( v : Vect2f&, aId : int, aValue : float )
-    + Card( aX : float, aY : float, aPos : Vect2f& )
-    + Card( v : Vect2f&, aPos : Vect2f& )
-    + Card( aX : float, aY : float, aId : int, aPos : Vect2f& )
-    + Card( v : Vect2f&, aId : int, aPos : Vect2f& )
-    + Card( aX : float, aY : float, aId : int, aValue : float, aPos : Vect2f& )
-    + Card( v : Vect2f&, aId : int, aValue : float, aPos : Vect2f& )
+    + Card( aV : float )
+    + Card( c : Card& )
     + ~Card()
 
     + operator=( c : Card&): Card&
     
-    + getSize(): Vect2f&
-    + getId(): int&
-
-    + move( v : Vect2f& ): void
-    + moveTo( v : Vect2f& ): void
+    + getValue(): float
 }
 
 class Deck{
-    # size : int
-    # pile : list<Card*>
+    # size : size_t
+    # pile : list<shared_ptr<Card>>
 
     + Deck()
     + Deck( d : Deck& )
-    + ~Deck
+    + ~Deck()
 
     + operator=( d : Deck& ): Deck&
-    + operator[]( i : size_t ): Card&
+    + operator[]( i : size_t ): shared_ptr<Card>
 
     + getSize(): int
 
-    + add_front( c : Card* ): void
-    + add_back( c : Card* ): void
-    + pick_up(): Card*
-    + give_front(): void
-    + give_back(): void
+    + add( c : shared_ptr<Card>, loc : int ): void
+    + pick_up(): shared_ptr<Card>
+    + give_to( i : size_t, d : Deck&, loc : int): void
     + shuffle(): void
 }
 
@@ -135,7 +114,7 @@ class Player{
     + getName(): string&
     + getId(): int&
     + getPawn(): Pawn&
-    + getPosition(): Vect2f&
+    + getPawnPosition(): Vect2f&
     + getHand(): Deck&
 
     + login(): void
@@ -155,6 +134,7 @@ class Pawn{
     + operator=( p : Pawn& ): Pawn&
 
     + getPosition(): Vect2f&
+
     + move( v : Vect2f& ): void
     + moveTo( v : Vect2f& ): void
 }
@@ -174,11 +154,9 @@ class Game{
     + setState( s : int ): void
 }
 
-IMovable --|> Card
 IMovable --|> Pawn
 
 
-Card "1" *-- "1" Vector2
 
 Deck "1" *-- "0..n" Card
 
