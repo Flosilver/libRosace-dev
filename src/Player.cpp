@@ -63,7 +63,7 @@ const Pawn& Player::getPawn() const {
   return pawn;
 }
 
-const Vect2f& Player::getPosition() const {
+const Vect2f& Player::getPawnPosition() const {
   return pawn.getPosition();
 }
 
