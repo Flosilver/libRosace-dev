@@ -23,16 +23,14 @@ using namespace std;
 
 namespace rsc
 {
-class Card;
-
 /* class's constant which serv in argument of some methods to define 
 if we manipule a Card in the front or in back of the Deck*/
-#define TOP 0     
+/*#define TOP 0     
 #define BOTTOM 1
 #define MID 2
-#define RAND 3
+#define RAND 3*/
+typedef enum{TOP, BOTTOM, MID, RAND} loc_t;
 
-typedef shared_ptr<Card> sp_Card;
     
 class Deck
 {

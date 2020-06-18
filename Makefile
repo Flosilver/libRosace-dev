@@ -36,8 +36,8 @@ all: $(LIB_NAME)
 $(LIB_NAME): $(OBJ)
 	ar -r $(NEW_LIB) $^
 	ranlib $(NEW_LIB)
-	sudo cp -i $(NEW_LIB) /usr/lib/
-	sudo cp -i $(INCS) /usr/include/c++/7*
+	sudo cp -i -u $(NEW_LIB) /usr/lib/
+	sudo cp -i -u $(INCS) /usr/include/c++/7
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)

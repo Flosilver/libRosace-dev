@@ -10,7 +10,7 @@ Vector2<T>::Vector2(){
 }
 
 template<typename T>
-Vector2<T>::Vector2(T& aX, T& aY){
+Vector2<T>::Vector2(T aX, T aY){
     x = aX;
     y = aY;
 }
@@ -95,13 +95,13 @@ Vector2<T>& Vector2<T>::operator-=(const Vector2<T>& v){
 /* Operateur + */
 template<typename T>
 Vector2<T> Vector2<T>::operator+(const Vector2<T>& v) const{
-    return Vector2(x, y) += v;
+    return Vector2<T>(x, y) += v;
 }
 
 /* Operateur - */
 template<typename T>
 Vector2<T> Vector2<T>::operator-(const Vector2<T>& v) const{
-    return Vector2(x, y) -= v;
+    return Vector2<T>(x, y) -= v;
 }
 
 /* Operateur * un Vector2<T> */
@@ -113,7 +113,7 @@ T Vector2<T>::operator*(const Vector2<T>& v) const{
 /* Operateur * un type T */
 template<typename T>
 Vector2<T> Vector2<T>::operator*(T t) const{
-    return Vector2(x * t, y * t);
+    return Vector2<T>(x * t, y * t);
 }
 
 /* Flux Opérateur << */

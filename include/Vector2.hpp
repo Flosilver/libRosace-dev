@@ -15,7 +15,7 @@ class Vector2
 
         /* Constructeurs et destructeurs */
         Vector2();
-        Vector2(T& aX, T& aY);
+        Vector2(T aX, T aY);
         Vector2(const Vector2<T>& v);
         ~Vector2();
 
