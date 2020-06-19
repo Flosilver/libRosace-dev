@@ -38,8 +38,8 @@ class Vector2
         Vector2<T> operator*(T t) const;
 
         /* Flux */
-        //friend std::ostream& operator<<(std::ostream& ofs, const Vector2<T>& v);
-        //friend std::istream& operator>>(std::istream& ifs, Vector2<T>& v);
+        //friend std::ostream& std::operator<<(std::ostream& ofs, const Vector2<T>& v);
+        //friend std::istream& std::operator>>(std::istream& ifs, Vector2<T>& v);
 };
 
 // Define the most common types
@@ -161,23 +161,24 @@ Vector2<T> Vector2<T>::operator*(T t) const{
     return Vector2<T>(x * t, y * t);
 }
 
+
+
+
+} // namespace rsc
+
 /* Flux Opérateur << */
 /*template<typename T>
-std::ostream& operator<<(std::ostream& ofs, const Vector2<T>& v){
+std::ostream& std::operator<<(std::ostream& ofs, const rsc::Vector2<T>& v){
     ofs << "[" << v.x << ":" << v.y << "]";
     return ofs;
 }*/
 
 /* Flux Operateur >> */
 /*template<typename T>
-std::istream& operator>>(std::istream& ifs, Vector2<T>& v){
+std::istream& std::operator>>(std::istream& ifs, rsc::Vector2<T>& v){
     ifs >> v.x >> v.y;
     return ifs;
 }*/
-
-
-
-} // namespace rsc
 
 
 
