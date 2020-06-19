@@ -47,7 +47,7 @@ class Deck
 
         /* Operateur */
         Deck& operator=(const Deck& d);
-        sp_Card operator[](size_t i) const;
+        sp_Card& operator[](size_t i);
 
         /* Accesseurs */
         const int& getSize() const;// {return size;}

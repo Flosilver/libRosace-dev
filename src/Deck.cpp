@@ -28,8 +28,8 @@ Deck& Deck::operator=(const Deck& d){
     return *this;
 }
 
-sp_Card Deck::operator[](size_t i) const{
-    list<sp_Card>::const_iterator it = pile.begin();
+sp_Card& Deck::operator[](size_t i){
+    list<sp_Card>::iterator it = pile.begin();
     advance(it, i);
     // If the indicator of the asked Card is bigger than the size of the pile, then the last Card is returned.
     if(i >= size){
@@ -119,11 +119,19 @@ void Deck::give_to(size_t i, Deck& d, int loc){
 void Deck::shuffle(){
     if (!pile.empty()){
         int haz;
-        sp_Card temp;
+        //sp_Card temp;
         for ( sp_Card& spc : pile ){
+            cout << "---\nspc: " << spc->getValue() << endl;
             haz = rand() % size;
-            temp = (*this)[haz];
-            spc.swap(temp);
+            cout << "haz: " << haz << endl;
+            cout << "(*this)[haz]: " << (*this)[haz]->getValue() << endl;
+            //temp = (*this)[haz];
+            //cout << "temp:" << temp->getValue() << endl;
+            spc.swap((*this)[haz]);
+            cout << "spc: " << spc->getValue() << endl;
+            cout << "(*this)[haz]: " << (*this)[haz]->getValue() << endl;
+            //cout << "temp:" << temp->getValue() << endl;
+
         }
     }
     else{
