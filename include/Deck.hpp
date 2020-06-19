@@ -31,6 +31,7 @@ if we manipule a Card in the front or in back of the Deck*/
 #define RAND 3*/
 typedef enum{TOP, BOTTOM, MID, RAND} loc_t;
 
+typedef shared_ptr<Card> sp_Card;
     
 class Deck
 {
