@@ -52,8 +52,8 @@ typedef Vector2<float>        Vect2f;
 /* Constructeur */
 template<typename T>
 Vector2<T>::Vector2(){
-    x = 0;
-    y = 0;
+    x = T();
+    y = T();
 }
 
 template<typename T>

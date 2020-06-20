@@ -53,9 +53,9 @@ typedef Vector3<float>        Vect3f;
 
 template<typename T>
 Vector3<T>::Vector3(){
-    x = 0;
-    y = 0;
-    z = 0;
+    x = T();
+    y = T();
+    z = T();
 }
 
 template<typename T>
