@@ -1,24 +1,24 @@
-#ifndef PAWN_HPP
-#define PAWN_HPP
+#ifndef PAWN2_HPP
+#define PAWN2_HPP
 
 #include "Vector2.hpp"
-#include "IMovable.hpp"
+#include "IMovable2.hpp"
 
 namespace rsc
 {
-class Pawn : public IMovable
+class Pawn2 : public IMovable2
 {
     protected:
         Vect2f position;    // position of the pawn
 
     public:
-        Pawn();
-        Pawn(const Vect2f& pos);
-        Pawn(float aX, float aY);
-        ~Pawn();
+        Pawn2();
+        Pawn2(const Vect2f& pos);
+        Pawn2(float aX, float aY);
+        ~Pawn2();
 
         /* Operateurs */
-        Pawn& operator=(const Pawn& p);
+        Pawn2& operator=(const Pawn2& p);
 
         /* accesseur */
         const Vect2f& getPosition() const;

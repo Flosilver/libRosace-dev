@@ -22,7 +22,7 @@ class Card
         Card& operator=(const Card& c);
 
         /* accesseur */
-        const float& getValue() const;// {return value;}
+        const float& getValue() const;
 };
 
 } // namespace rsc

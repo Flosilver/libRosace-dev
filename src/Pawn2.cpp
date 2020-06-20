@@ -1,40 +1,40 @@
-#include "Pawn.hpp"
+#include "Pawn2.hpp"
 
 using namespace rsc;
 
 /* constructeurs */
 
-Pawn::Pawn(){
+Pawn2::Pawn2(){
   position = Vect2f();
 }
 
-Pawn::Pawn(const Vect2f& pos){
+Pawn2::Pawn2(const Vect2f& pos){
   position = pos;
 }
 
-Pawn::Pawn(float aX, float aY){
+Pawn2::Pawn2(float aX, float aY){
   position = Vect2f(aX,aY);
 }
 
 /* Destructeur */
-Pawn::~Pawn() {}
+Pawn2::~Pawn2() {}
 
 /* Operateurs */
-Pawn& Pawn::operator=(const Pawn& p){
+Pawn2& Pawn2::operator=(const Pawn2& p){
   position = p.position;
 
   return *this;
 }
 /* Accesseur */
-const Vect2f& Pawn::getPosition() const {
+const Vect2f& Pawn2::getPosition() const {
   return position;
 }
 
 /* methode de IMovable */
-void Pawn::move(const Vect2f& v){
+void Pawn2::move(const Vect2f& v){
   position += v;
 }
 
-void Pawn::moveTo(const Vect2f& v){
+void Pawn2::moveTo(const Vect2f& v){
   position = v;
 }

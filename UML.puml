@@ -1,12 +1,18 @@
 @startuml UML
 
-interface IMovable{
+set namespaceSeparator ::
+
+interface rsc::IMovable2{
     + {abstract} move( v : Vect2f& ): void
     + {abstract} moveTo( v : Vect2f& ): void
 }
 
+interface rsc::IMovable3{
+    + {abstract} move( v : Vect3f& ): void
+    + {abstract} moveTo( v : Vect3f& ): void
+}
 
-class Vector2 {
+class rsc::Vector2<template<typename T>> {
     + x : T
     + y : T 
 
@@ -34,7 +40,7 @@ class Vector2 {
     + operator>>( ifs : istream&, v : Vector2<T>& ): istream&
 }
 
-class Vector3 {
+class rsc::Vector3<template<typename T>> {
     + x : T
     + y : T 
     + z : T
@@ -64,7 +70,7 @@ class Vector3 {
 }
 
 
-class Card
+class rsc::Card
 {
     # value : float
 
@@ -78,7 +84,7 @@ class Card
     + getValue(): float
 }
 
-class Deck{
+class rsc::Deck{
     # size : size_t
     # pile : list<shared_ptr<Card>>
 
@@ -87,7 +93,7 @@ class Deck{
     + ~Deck()
 
     + operator=( d : Deck& ): Deck&
-    + operator[]( i : size_t ): shared_ptr<Card>
+    + operator[]( i : size_t ): shared_ptr<Card>&
 
     + getSize(): int
 
@@ -97,41 +103,32 @@ class Deck{
     + shuffle(): void
 }
 
-class Player{
+class rsc::Player{
     # name : string
     # id : int
-    # pawn : Pawn
-    # hand : Deck
     
     + Player( n : string )
-    + Player( n : string, aId : int, pa : Pawn&)
-    + Player( n : string, aId : int, d : Deck&)
-    + Player( n : string, aId : int, pa : Pawn&, d : Deck&)
+    + Player( n : string, aId : int )
     + ~Player()
 
     + operator=( p : Player&): Player&
 
     + getName(): string&
     + getId(): int&
-    + getPawn(): Pawn&
-    + getPawnPosition(): Vect2f&
-    + getHand(): Deck&
 
     + login(): void
     + logout(): void
-    + movePawn(): void
-    + movePawnTo(): void
 }
 
-class Pawn{
+class rsc::Pawn2{
     # position : Vect2f
 
-    + Pawn()
-    + Pawn( pos : Vect2f& )
-    + Pawn( aX : float, aY : float )
-    + ~Pawn()
+    + Pawn2()
+    + Pawn2( pos : Vect2f& )
+    + Pawn2( aX : float, aY : float )
+    + ~Pawn2()
 
-    + operator=( p : Pawn& ): Pawn&
+    + operator=( p : Pawn2& ): Pawn2&
 
     + getPosition(): Vect2f&
 
@@ -139,7 +136,23 @@ class Pawn{
     + moveTo( v : Vect2f& ): void
 }
 
-class Game{
+class rsc::Pawn3{
+    # position : Vect3f
+
+    + Pawn3()
+    + Pawn3( pos : Vect2f& )
+    + Pawn3( aX : float, aY : float, aZ : float )
+    + ~Pawn3()
+
+    + operator=( p : Pawn3& ): Pawn3&
+
+    + getPosition(): Vect3f&
+
+    + move( v : Vect3f& ): void
+    + moveTo( v : Vect3f& ): void
+}
+
+class rsc::Game{
     + state : int
     + deck : Deck
     + discard : Deck
@@ -154,16 +167,12 @@ class Game{
     + setState( s : int ): void
 }
 
-IMovable --|> Pawn
+rsc::IMovable2 <|-- rsc::Pawn2
+rsc::IMovable3 <|-- rsc::Pawn3
 
+rsc::Deck "1" *-- "0..n" rsc::Card
 
-
-Deck "1" *-- "0..n" Card
-
-Player "1" *-- "1" Pawn
-Player "1" *-- "1" Deck
-
-Game "4" *-- "1" Player
-Game "2" *-- "1" Deck
+rsc::Game "4" *-- "1" rsc::Player
+rsc::Game "2" *-- "1" rsc::Deck
 
 @enduml
