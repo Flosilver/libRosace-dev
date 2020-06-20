@@ -2,14 +2,9 @@
 
 set namespaceSeparator ::
 
-interface rsc::IMovable2{
-    + {abstract} move( v : Vect2f& ): void
-    + {abstract} moveTo( v : Vect2f& ): void
-}
-
-interface rsc::IMovable3{
-    + {abstract} move( v : Vect3f& ): void
-    + {abstract} moveTo( v : Vect3f& ): void
+interface rsc::IMovable <template<typename T>>{
+    + {abstract} move( v : T& ): void
+    + {abstract} moveTo( v : T& ): void
 }
 
 class rsc::Vector2<template<typename T>> {
@@ -120,36 +115,19 @@ class rsc::Player{
     + logout(): void
 }
 
-class rsc::Pawn2{
-    # position : Vect2f
+class rsc::Pawn <template<typename T>>{
+    # position : T
 
-    + Pawn2()
-    + Pawn2( pos : Vect2f& )
-    + Pawn2( aX : float, aY : float )
-    + ~Pawn2()
+    + Pawn()
+    + Pawn( pos : T& )
+    + ~Pawn()
 
     + operator=( p : Pawn2& ): Pawn2&
 
-    + getPosition(): Vect2f&
+    + getPosition(): T&
 
-    + move( v : Vect2f& ): void
-    + moveTo( v : Vect2f& ): void
-}
-
-class rsc::Pawn3{
-    # position : Vect3f
-
-    + Pawn3()
-    + Pawn3( pos : Vect2f& )
-    + Pawn3( aX : float, aY : float, aZ : float )
-    + ~Pawn3()
-
-    + operator=( p : Pawn3& ): Pawn3&
-
-    + getPosition(): Vect3f&
-
-    + move( v : Vect3f& ): void
-    + moveTo( v : Vect3f& ): void
+    + move( v : T& ): void
+    + moveTo( v : T& ): void
 }
 
 class rsc::Game{
@@ -167,8 +145,7 @@ class rsc::Game{
     + setState( s : int ): void
 }
 
-rsc::IMovable2 <|-- rsc::Pawn2
-rsc::IMovable3 <|-- rsc::Pawn3
+rsc::IMovable <|-- rsc::Pawn
 
 rsc::Deck "1" *-- "0..n" rsc::Card
 
