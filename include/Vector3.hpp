@@ -39,8 +39,10 @@ class Vector3
         Vector3<T> operator*(T t) const;
 
         /* Flux */
-        //friend std::ostream& std::operator<<(std::ostream& ofs, const Vector3<T>& v);
-        //friend std::istream& std::operator>>(std::istream& ifs, Vector3<T>& v);
+        template<typename T2>
+        friend std::ostream& std::operator<<(std::ostream& ofs, const Vector3<T2>& v);
+        template<typename T2>
+        friend std::istream& std::operator>>(std::istream& ifs, Vector3<T2>& v);
 };
 
 // Define the most common types
@@ -176,17 +178,17 @@ Vector3<T> Vector3<T>::operator*(T t) const{
 } // namespace rsc
 
 /* Flux Opérateur << */
-/*template<typename T>
-std::ostream& std::operator<<(std::ostream& ofs, const rsc::Vector3<T>& v){
-    ofs << "[" << v.x << ":" << v.y << ":" << v.z << "]";
+template<typename T2>
+std::ostream& operator<<(std::ostream& ofs, const rsc::Vector3<T2>& v){
+    ofs << "[ " << v.x << " : " << v.y << " : " << v.z << " ]";
     return ofs;
-}*/
+}
 
 /* Flux Operateur >> */
-/*template<typename T>
-std::istream& std::operator>>(std::istream& ifs, rsc::Vector3<T>& v){
+template<typename T2>
+std::istream& operator>>(std::istream& ifs, rsc::Vector3<T2>& v){
     ifs >> v.x >> v.y >> v.z;
     return ifs;
-}*/
+}
 
 #endif
