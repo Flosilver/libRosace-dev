@@ -13,10 +13,6 @@ OBJ := $(addprefix $(OBJ_DIR)/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
 INCS := $(wildcard $(INCLUDE_DIR)/*.hpp)
 
 
-ENET := enet_install
-ENET_SUPP := enet_uninstall
-ENET_DIR := enet-1.3.15/
-
 # tests
 #TEST_DIR := unit_test
 #TEST_OBJ_DIR := obj_test
@@ -49,12 +45,6 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	
 $(OBJ_DIR):
 	mkdir $@
-
-$(ENET):
-	cd $(ENET_DIR) && autoreconf -vfi && sudo ./configure && sudo make && sudo make install
-
-$(ENET_SUPP):
-	cd $(ENET_DIR) && sudo make uninstall
 
 # Tests
 #$(TEST): $(OBJ_TEST)
