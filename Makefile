@@ -13,6 +13,10 @@ OBJ := $(addprefix $(OBJ_DIR)/, $(notdir $(patsubst %.cpp, %.o, $(SRC))))
 INCS := $(wildcard $(INCLUDE_DIR)/*.hpp)
 
 
+ENET := enet_install
+ENET_SUPP := enet_uninstall
+ENET_DIR := enet-1.3.15/
+
 # tests
 #TEST_DIR := unit_test
 #TEST_OBJ_DIR := obj_test
@@ -23,10 +27,11 @@ INCS := $(wildcard $(INCLUDE_DIR)/*.hpp)
 
 # dependances
 CC := g++
-INCLUDE := -Iinclude
+INCLUDE := -Iinclude -I/usr/local/include
 CFLAGS := -g -Wall -std=c++11
 LDFLAGS := 
-LIBS := 		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
+LIB_PATH := -L/usr/local/lib
+LIBS := -lenet		#-lsfml-graphics -lsfml-window -lsfml-system -lsfml-network -lsfml-audio
 
 .PHONY: all clean mrproper remake
 
@@ -40,11 +45,16 @@ $(LIB_NAME): $(OBJ)
 	sudo cp -i -u $(INCS) /usr/include/c++/7
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE)
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE) $(LIB_PATH) $(LIBS))
 	
 $(OBJ_DIR):
 	mkdir $@
 
+$(ENET):
+	cd $(ENET_DIR) && autoreconf -vfi && sudo ./configure && sudo make && sudo make install
+
+$(ENET_SUPP):
+	cd $(ENET_DIR) && sudo make uninstall
 
 # Tests
 #$(TEST): $(OBJ_TEST)
