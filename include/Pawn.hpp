@@ -2,6 +2,8 @@
 #define PAWN_HPP
 
 #include "IMovable.hpp"
+#include "Vector2.hpp"
+#include "Vector3.hpp"
 
 namespace rsc
 {
@@ -40,7 +42,7 @@ typedef Pawn<Vect3f> Pawn_3f;
 typedef Pawn<Vect3u> Pawn_3u;
 
 
-
+/* Constructeurs */
 template<typename T>
 Pawn<T>::Pawn(){
   position = T();
@@ -50,11 +52,6 @@ template<typename T>
 Pawn<T>::Pawn(const T& pos){
   position = pos;
 }
-
-/*template<typename T>
-Pawn<T>::Pawn(float aX, float aY, float aZ){
-  position = Vect3f(aX, aY, aZ);
-}*/
 
 /* Destructeur */
 template<typename T>
