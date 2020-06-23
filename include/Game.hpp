@@ -13,6 +13,8 @@
 namespace rsc
 {
 typedef enum{North, East, South, West} player_t;     // [0,1,2,3]  number of the player according to it's position
+typedef std::shared_ptr<Player> sp_player;
+
 class Game
 {
     protected:
@@ -24,13 +26,11 @@ class Game
         char recMess[200];
         char mess[200];
         int nbConnectes = 0;
-        bool isConnected[NB_J_MAX];
+        
     
     public:
-        int state;                                                  // game's state
-        std::vector<Player*> players = std::vector<Player*>(NB_J_MAX);     // list of 4 players
-        Deck deck;                                                  // deck
-        Deck discard;                                               // a deck were we put used cards
+        int state;                                                          // game's state
+        std::vector<sp_player> players = std::vector<sp_player>(NB_J_MAX);  // list of 4 players
         // abstract field for different types of map
 
         Game();
@@ -42,18 +42,16 @@ class Game
 
         /* accesseur */
         const int& getState() const;
-        const Deck& getDeck() const;
-        const Deck& getDiscard() const;
-        const Player* getPlayer(int dir) const;
-
+        const sp_player getPlayer(int dir) const;
         void setState(const int s);
 
         /* méthode */
-        static int initialize_game();
-        void launch_game(int serv_addr_port);
+        static void initialize_server();
+        void launch(int serv_addr_port);
         void sendBroadcast(char* mess); 
-        void sendIsConnected(int dir);
-        void sendIsAlreadyConnected(int dir);
+        const bool& isConnected(int dir) const;
+
+        virtual void handleIncomingMessage() = 0;
 };
 
 } // namespace rsc

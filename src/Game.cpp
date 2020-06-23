@@ -4,19 +4,30 @@ using namespace rsc;
 
 /* Constructeur */
 Game::Game(){
-    deck = Deck();
-    discard = Deck();
+	state = 0;
+
+	for (int i=0 ; i<NB_J_MAX ; i++){
+		players[i] = make_shared<Player>();
+	}
 }
 
 /* Destructeur */
-Game::~Game() {}
+Game::~Game() {
+	delete server;
+	delete peer;
+
+	players.clear();
+
+	enet_deinitialize();
+}
 
 /* Operateur */
 Game& Game::operator=(const Game& g){
-    deck = g.deck;
-    discard = g.discard;
     state = g.state;
-    players = g.players;
+
+    for (int i=0 ; i<NB_J_MAX ; i++){
+		players[i] = make_shared<Player>(Player(*g.players[i]));
+	}
 
     return *this;
 }
@@ -26,34 +37,32 @@ const int& Game::getState() const {
     return state;
 }
 
-const Deck& Game::getDeck() const {
-    return deck;
-}
-
-const Deck& Game::getDiscard() const {
-    return discard;
-}
-
-const Player* Game::getPlayer(int dir) const {
-    return players[dir];
+const sp_player Game::getPlayer(int dir) const {
+    for (const sp_player& spp : players){
+		if (spp->getDir() == dir){
+			return spp;
+		}
+	}
+	return make_shared<Player>();
+	// TODO: gestion d'erreur
 }
 
 void Game::setState(const int s) {
     state = s;
 }
 
-int Game::initialize_game(){
+/* First command in a main before the creation of a new Game */
+void Game::initialize_server(){
     printf("enet_initialize()\n");
 
 	if (enet_initialize () != 0)
 	{
-        fprintf (stderr, "An error occurred while initializing ENet.\n");
-        return 1;   // FAILURE
+        fprintf (stderr, "***ERROR: An error occurred while initializing ENet.\n");
+        exit(EXIT_FAILURE);   // FAILURE
     }
-    return 0;   // SUCCESS
 }
 
-void Game::launch_game(int serv_addr_port){
+void Game::launch(int serv_addr_port){
     address.host = ENET_HOST_ANY;
 
 	address.port = serv_addr_port;
@@ -63,7 +72,7 @@ void Game::launch_game(int serv_addr_port){
 	if (server == NULL)
 	{
        		fprintf (stderr, 
-			"An error occurred while trying to create an ENet server host.\n");
+			"***ERROR: An error occurred while trying to create an ENet server host.\n");
        		exit (EXIT_FAILURE);
     	}
 }
@@ -89,10 +98,6 @@ void Game::sendBroadcast(char *mess){
 	enet_host_broadcast (server, 1, packet);
 }
 
-void Game::sendIsConnected(int dir){
-    printf("%d est connecte\n",dir);
-}
-
-void Game::sendIsAlreadyConnected(int dir){
-    printf("%d est déjà connecte\n",dir);
+const bool& Game::isConnected(int dir) const{
+	return players[dir]->isConnected();
 }

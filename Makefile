@@ -56,6 +56,11 @@ $(OBJ_DIR):
 #$(TEST_OBJ_DIR):
 #	mkdir $@
 
+lib-uninstall:
+	cd /usr/lib/ && sudo rm -i libRosace.a
+
+uninstall: lib-uninstall
+	cd /usr/include/c++/7 && sudo rm -i *.hpp
 
 clean:
 	rm -rf $(OBJ)

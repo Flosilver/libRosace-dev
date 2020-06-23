@@ -1,21 +1,18 @@
 #include "Player.hpp"
 
 using namespace rsc;
+using namespace std;
 
 /* Constructeur */
 Player::Player(){
-  name = " ";
-  id = 0;
+  name = "-";
+  dir = -1;
+  connected = false;
 }
 
-Player::Player(std::string n){
+Player::Player(std::string n, int aDir){
   name = n;
-  id = 0;
-}
-
-Player::Player(std::string n, int aId){
-  name = n;
-  id = aId;
+  dir = aDir;
 }
 
 /* Destructeur */
@@ -24,7 +21,7 @@ Player::~Player() {}
 /* Operateur = */
 Player& Player::operator=(const Player& p){
   name = p.name;
-  id = p.id;
+  dir = p.dir;
   
   return *this;
 }
@@ -34,16 +31,26 @@ const std::string& Player::getName() const {
   return name;
 }
 
-const int& Player::getId() const {
-  return id;
+const int& Player::getDir() const {
+  return dir;
+}
+
+const bool& Player::isConnected() const{
+  if (connected){
+    cout << dir << " is connected" << endl;
+  }
+  else{
+    cout << dir << " is already connected" << endl;
+  }
+  return connected;
 }
 
 /* Methodes */
 
 void Player::login(){
-  //TODO
+  connected = true;
 }
 
 void Player::logout(){
-  //TODO
+  connected = false;
 }
