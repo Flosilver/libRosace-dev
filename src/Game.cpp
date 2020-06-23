@@ -53,7 +53,7 @@ int Game::initialize_game(){
     return 0;   // SUCCESS
 }
 
-int Game::launch_game(int serv_addr_port){
+void Game::launch_game(int serv_addr_port){
     address.host = ENET_HOST_ANY;
 
 	address.port = serv_addr_port;

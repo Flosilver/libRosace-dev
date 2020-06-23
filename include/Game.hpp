@@ -50,7 +50,7 @@ class Game
 
         /* méthode */
         static int initialize_game();
-        int launch_game(int serv_addr_port);
+        void launch_game(int serv_addr_port);
         void sendBroadcast(char* mess); 
         void sendIsConnected(int dir);
         void sendIsAlreadyConnected(int dir);

@@ -41,7 +41,7 @@ $(LIB_NAME): $(OBJ)
 	sudo cp -i -u $(INCS) /usr/include/c++/7
 	
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE) $(LIB_PATH) $(LIBS))
+	$(CC) -c $< -o $@ $(CFLAGS) $(INCLUDE) $(LIB_PATH) $(LIBS)
 	
 $(OBJ_DIR):
 	mkdir $@
