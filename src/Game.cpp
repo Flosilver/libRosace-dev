@@ -1,9 +1,14 @@
 #include "Game.hpp"
 
 using namespace rsc;
+using namespace std;
 
 /* Constructeur */
 Game::Game(){
+	server = nullptr;
+	peer = nullptr;
+
+
 	state = 0;
 
 	for (int i=0 ; i<NB_J_MAX ; i++){
@@ -13,12 +18,19 @@ Game::Game(){
 
 /* Destructeur */
 Game::~Game() {
+	//cout << "***destructeur de Game" << endl;
 	delete server;
 	delete peer;
 
+	//cout << "***serveur et peer detruits" << endl;
 	players.clear();
+	//cout << "***ensemble des players détruits" << endl;
 
+	//cout << "***deinitialisation de enet" << endl;
 	enet_deinitialize();
+	//cout << "\t***dest Game" << endl;
+
+
 }
 
 /* Operateur */

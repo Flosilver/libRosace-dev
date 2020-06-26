@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <cstring>
+#include <iostream>
 #include <enet/enet.h>
 
 #define NB_J_MAX 4
