@@ -5,13 +5,11 @@ using namespace std;
 
 /* Constructeur */
 Player::Player(){
-  name = "-";
   dir = -1;
   connected = false;
 }
 
-Player::Player(std::string n, int aDir){
-  name = n;
+Player::Player(int aDir){
   dir = aDir;
 }
 
@@ -20,16 +18,13 @@ Player::~Player() {}
 
 /* Operateur = */
 Player& Player::operator=(const Player& p){
-  name = p.name;
   dir = p.dir;
+  connected = p.connected;
   
   return *this;
 }
 
 /* accesseur */
-const std::string& Player::getName() const {
-  return name;
-}
 
 const int& Player::getDir() const {
   return dir;
