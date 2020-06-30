@@ -35,6 +35,11 @@ Game::~Game() {
 
 /* Operateur */
 Game& Game::operator=(const Game& g){
+	address = g.address;
+	server = g.server;
+	peer = g.peer;
+	nbConnectes = g.nbConnectes;
+	
     state = g.state;
 
     for (int i=0 ; i<NB_J_MAX ; i++){
