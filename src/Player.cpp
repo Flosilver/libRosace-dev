@@ -35,7 +35,7 @@ const bool& Player::isConnected() const{
     cout << dir << " is connected" << endl;
   }
   else{
-    cout << dir << " is already connected" << endl;
+    cout << dir << " isn't connected" << endl;
   }
   return connected;
 }
@@ -43,9 +43,11 @@ const bool& Player::isConnected() const{
 /* Methodes */
 
 void Player::login(){
+  cout << dir << "Connection" << endl;
   connected = true;
 }
 
 void Player::logout(){
+  cout << dir << "Deconnexion" << endl;
   connected = false;
 }

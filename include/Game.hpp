@@ -22,7 +22,6 @@ class Game
         ENetAddress address;
         ENetHost *server;
         ENetPeer *peer;
-        ENetEvent event;
 
         char recMess[200];
         char mess[200];
@@ -32,7 +31,7 @@ class Game
     public:
         int state;                                                          // game's state
         std::vector<sp_player> players = std::vector<sp_player>(NB_J_MAX);  // list of 4 players
-        // abstract field for different types of map
+        ENetEvent event;
 
         Game();
         ~Game();
@@ -51,6 +50,10 @@ class Game
         void launch(int serv_addr_port);
         void sendBroadcast(char* mess); 
         const bool& isConnected(int dir) const;
+        void connect(int dir);
+        void disconnect(int dir);
+        const int game_host_service();
+        void receive_event();
 
         virtual void handleIncomingMessage() = 0;
 };

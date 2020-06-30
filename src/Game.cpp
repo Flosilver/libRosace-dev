@@ -118,3 +118,28 @@ void Game::sendBroadcast(char *mess){
 const bool& Game::isConnected(int dir) const{
 	return players[dir]->isConnected();
 }
+
+void Game::connect(int dir){
+	players[dir]->login();
+}
+
+void Game::disconnect(int dir){
+	players[dir]->logout();
+}
+
+const int Game::game_host_service(){
+	return enet_host_service(server, &event, 0);
+}
+
+void Game::receive_event(){
+	peer = event.peer;
+	int idx=0;
+	for (int i=9;i<(int)event.packet->dataLength;i++)
+	{
+		//printf("%c",(char)event.packet->data[i]);
+		recMess[idx++]=(char)event.packet->data[i];
+	}
+	recMess[idx++]='\0';
+	printf("recMess=|%s|\n",recMess);
+	enet_packet_destroy (event.packet);
+}
