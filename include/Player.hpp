@@ -3,10 +3,12 @@
 
 #include <string>
 #include <iostream>
+#include <memory>
 
 
 namespace rsc
 {
+
 class Player
 {
     protected:
@@ -29,6 +31,8 @@ class Player
         void login();
         void logout();
 };
+
+typedef std::shared_ptr<Player> sp_player;
 
 } // namespace rsc
 

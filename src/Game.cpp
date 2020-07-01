@@ -11,9 +11,9 @@ Game::Game(){
 
 	state = 0;
 
-	for (int i=0 ; i<NB_J_MAX ; i++){
+	/*for (int i=0 ; i<NB_J_MAX ; i++){
 		players[i] = make_shared<Player>();
-	}
+	}*/
 }
 
 /* Destructeur */
@@ -23,7 +23,7 @@ Game::~Game() {
 	delete peer;
 
 	//cout << "***serveur et peer detruits" << endl;
-	players.clear();
+	//players.clear();
 	//cout << "***ensemble des players détruits" << endl;
 
 	//cout << "***deinitialisation de enet" << endl;
@@ -42,9 +42,9 @@ Game& Game::operator=(const Game& g){
 	
     state = g.state;
 
-    for (int i=0 ; i<NB_J_MAX ; i++){
+    /*for (int i=0 ; i<NB_J_MAX ; i++){
 		players[i] = make_shared<Player>(Player(*g.players[i]));
-	}
+	}*/
 
     return *this;
 }
@@ -52,16 +52,6 @@ Game& Game::operator=(const Game& g){
 /* Accesseurs */
 const int& Game::getState() const {
     return state;
-}
-
-const sp_player Game::getPlayer(int dir) const {
-    for (const sp_player& spp : players){
-		if (spp->getDir() == dir){
-			return spp;
-		}
-	}
-	return make_shared<Player>();
-	// TODO: gestion d'erreur
 }
 
 void Game::setState(const int s) {
@@ -113,18 +103,6 @@ void Game::sendBroadcast(char *mess){
 
 	ENetPacket * packet = enet_packet_create (buffer, 10+len, ENET_PACKET_FLAG_RELIABLE);
 	enet_host_broadcast (server, 1, packet);
-}
-
-const bool& Game::isConnected(int dir) const{
-	return players[dir]->isConnected();
-}
-
-void Game::connect(int dir){
-	players[dir]->login();
-}
-
-void Game::disconnect(int dir){
-	players[dir]->logout();
 }
 
 const int Game::game_host_service(){

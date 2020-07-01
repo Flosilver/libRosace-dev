@@ -5,6 +5,7 @@
 #include "Deck.hpp"
 
 #include <vector>
+#include <memory>
 #include <cstring>
 #include <iostream>
 #include <enet/enet.h>
@@ -14,7 +15,6 @@
 namespace rsc
 {
 typedef enum{North, East, South, West} player_t;     // [0,1,2,3]  number of the player according to it's position
-typedef std::shared_ptr<Player> sp_player;
 
 class Game
 {
@@ -30,11 +30,10 @@ class Game
     
     public:
         int state;                                                          // game's state
-        std::vector<sp_player> players = std::vector<sp_player>(NB_J_MAX);  // list of 4 players
         ENetEvent event;
 
         Game();
-        ~Game();
+        virtual ~Game();
 
 
         /* Operateurs */
@@ -42,16 +41,12 @@ class Game
 
         /* accesseur */
         const int& getState() const;
-        const sp_player getPlayer(int dir) const;
         void setState(const int s);
 
         /* méthode */
         static void initialize_server();
         void launch(int serv_addr_port);
         void sendBroadcast(char* mess); 
-        const bool& isConnected(int dir) const;
-        void connect(int dir);
-        void disconnect(int dir);
         const int game_host_service();
         void receive_event();
 
