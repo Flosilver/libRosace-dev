@@ -131,25 +131,34 @@ class rsc::Pawn <template<typename T>>{
 }
 
 class rsc::Game{
+    # address : ENetAddress
+    # server : ENetHost*
+    # peer : ENetPeer*
+    # recMess : char[]
+    # mess : char[]
+    # nbConnectes : int
     + state : int
-    + deck : Deck
-    + discard : Deck
-    + player : vector<Player*>
+    + event : ENetEvent
 
     + Game()
-    + ~Game()
+    + {abstract} ~Game()
 
     + operator=( g : Game& ): Game&
-    + operator[]( i : size_t ): Player*
 
+    + getState() : int&
     + setState( s : int ): void
+
+    + {static} initialize_server() : void
+    + launch( serv_addr_port : int ) : void
+    + sendBroadcast( mess : char* ) : void
+    + game_host_service() : int
+    + receive_event() : void
+
+    + {abstract} handleIncommingMessage() : void
 }
 
 rsc::IMovable <|-- rsc::Pawn
 
 rsc::Deck "1" *-- "0..n" rsc::Card
-
-rsc::Game "4" *-- "1" rsc::Player
-rsc::Game "2" *-- "1" rsc::Deck
 
 @enduml
