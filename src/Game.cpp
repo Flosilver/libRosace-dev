@@ -18,19 +18,17 @@ Game::Game(){
 
 /* Destructeur */
 Game::~Game() {
-	//cout << "***destructeur de Game" << endl;
+	cout << "***destructeur de Game" << endl;
 	delete server;
 	delete peer;
 
-	//cout << "***serveur et peer detruits" << endl;
+	cout << "***serveur et peer detruits" << endl;
 	//players.clear();
-	//cout << "***ensemble des players détruits" << endl;
+	cout << "***ensemble des players détruits" << endl;
 
-	//cout << "***deinitialisation de enet" << endl;
+	cout << "***deinitialisation de enet" << endl;
 	enet_deinitialize();
-	//cout << "\t***dest Game" << endl;
-
-
+	cout << "\t***dest Game" << endl;
 }
 
 /* Operateur */
@@ -118,6 +116,7 @@ void Game::receive_event(){
 		recMess[idx++]=(char)event.packet->data[i];
 	}
 	recMess[idx++]='\0';
-	printf("recMess=|%s|\n",recMess);
+	//printf("recMess=|%s|\n",recMess);
+	cout << "recMess=|" << recMess << "|" << endl;
 	enet_packet_destroy (event.packet);
 }
