@@ -117,6 +117,6 @@ void Game::receive_event(){
 	}
 	recMess[idx++]='\0';
 	//printf("recMess=|%s|\n",recMess);
-	cout << "recMess=|" << recMess << "|" << endl;
+	cout << "\n[->] recMess=|" << recMess << "|" << endl;
 	enet_packet_destroy (event.packet);
 }
