@@ -59,6 +59,8 @@ void Game::setState(const int s) {
 /* First command in a main before the creation of a new Game */
 void Game::initialize_server(){
     printf("enet_initialize()\n");
+	
+	srand(time(0));
 
 	if (enet_initialize () != 0)
 	{
