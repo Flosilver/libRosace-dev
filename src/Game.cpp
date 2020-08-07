@@ -88,6 +88,7 @@ void Game::sendBroadcast(char *mess){
     char buffer[256];
 
 	//for (int i=0;i<12;i++)
+	//merci M. Pecheux pour votre temps
 	for (int i=0;i<8;i++)
 		buffer[i]=0;
 	//buffer[8]=1;

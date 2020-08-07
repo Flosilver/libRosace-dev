@@ -30,7 +30,7 @@ class Game
         
     
     public:
-        int state;                                                          // game's state
+        int state;                                   // game's state
         ENetEvent event;
 
         Game();
