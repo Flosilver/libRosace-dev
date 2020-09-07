@@ -23,7 +23,8 @@ LibRosace possède son propre namespace:
 > rsc
 
 Impératif pour utiliser les classes de la librairie.
-Pour include la librairie à votre code, écrivez: 
+Pour include la librairie à votre code, écrivez:
+
 `#include <Rosace.hpp>` en en-tête de votre programme.
 LibRosace propose plusieurs classes C++ qui aident à la création d'un jeu:
 
@@ -36,6 +37,7 @@ Sont aussi proposés, des vecteurs de base (int, float, unsigned_int): `Vect2i`,
 
 Une classe de simple carte est disponible, elle possède unique une valeur pouvant représenter une valeur, un numéro de carte ou tout audre indication qu'une crate peux posséder. Pour ajouter des éléments, il suffit d'hériter de cette classe pour 
 Le `Deck` quand à lui possède une pile de cartes, cad une list de pointeurs `Card`. Ainsi toute classe héritant de `Card` pourra être ajouté au Deck.
+
 **ATTENTION**: il s'agit de `shared_ptr`, comme ce sont des pointeurs, pour utiliser les méthodes propres de vos classes héritées, il faudra caster les cartes de la pile du `Deck` avec la méthode dédiée des shared_ptr: `dynamic_pointer_cast`.
 
 ### 3. `Player`
@@ -50,4 +52,5 @@ Un pion tout ce qu'il y a de plus simple! Souvent attribué à une classe dériv
 ### 5. `Game`
 
 La classe la plus importante, elle contient l'essentiel de la programmation réseau *ENet*: l'initialisation du serveur built-in, une méthode permettant de séléctionner le port du serveur, l'envoie de message réseaux aux différents joueurs ainsi que la reception d'evenement réseaux.
+
 **IMPORTANT**: Cette classe est abstraite et doit impérativement implémenter la méthode `handleIncommingMessage` qui regroupera l'ensemble des règles du jeux et la signification des messages serveurs reçus et envoyés. A noté également que `Game` ce sert de la notion d'état pour gérer le fonctionnement du jeux (ex: "connexion", "jeu", "fin"). Cette notion n'est pas impérative mais fortement recommandée pour l'organisation de votre jeux.
