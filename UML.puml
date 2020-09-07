@@ -13,7 +13,7 @@ class rsc::Vector2<template<typename T>> {
 
     + Vector2()
     + Vector2( aX : T&, aY : T&)
-    + Vector2( v : Vector2<T>)
+    + Vector2( v : Vector2<T>&)
     + ~Vector2()
 
     + operator=( v : Vector2<T>& ): Vector2<T>&
@@ -90,7 +90,7 @@ class rsc::Deck{
     + operator=( d : Deck& ): Deck&
     + operator[]( i : size_t ): shared_ptr<Card>&
 
-    + getSize(): int
+    + getSize(): int&
 
     + add( c : shared_ptr<Card>, loc : int ): void
     + pick_up(): shared_ptr<Card>
@@ -99,17 +99,17 @@ class rsc::Deck{
 }
 
 class rsc::Player{
-    # name : string
-    # id : int
+    # dir : int
+    # connected : bool
     
-    + Player( n : string )
-    + Player( n : string, aId : int )
+    + Player()
+    + Player(aDir : int)
     + ~Player()
 
     + operator=( p : Player&): Player&
 
-    + getName(): string&
-    + getId(): int&
+    + getDir() : int&
+    + isConnected() : bool&
 
     + login(): void
     + logout(): void

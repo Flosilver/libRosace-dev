@@ -42,17 +42,32 @@ class Deck
         ~Deck();
 
         /* Operateur */
+
         Deck& operator=(const Deck& d);
         sp_Card& operator[](size_t i);
 
         /* Accesseurs */
+
         const int& getSize() const;// {return size;}
 
         /* méthode */
-        void add(sp_Card c, int loc);               // Add a new Card at the beginning of the pile
-        sp_Card pick_up();                          // Return the first Card of the pile
-        void give_to(size_t i, Deck& d, int loc);   // Trade the Card with the id = aId and give it to the front of the Deck in argument
-        void shuffle();                             // Shuffle the pile
+
+        /**
+         * Add a new Card at the beginning of the pile
+         **/
+        void add(sp_Card c, int loc);
+        /**
+         * Return the first Card of the pile 
+         **/
+        sp_Card pick_up();
+        /**
+         * Trade the Card with the id = aId and give it to the front of the Deck in argument
+         **/
+        void give_to(size_t i, Deck& d, int loc);
+        /**
+         * Shuffle the pile
+         **/
+        void shuffle();
 
 };
 
