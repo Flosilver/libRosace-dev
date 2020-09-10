@@ -38,13 +38,16 @@ class Game
 
 
         /* Operateurs */
+        
         Game& operator=(const Game& g);
 
         /* accesseur */
+
         const int& getState() const;
         void setState(const int s);
 
         /* méthode */
+
         static void initialize_server();
         void launch(int serv_addr_port);
         void sendBroadcast(char* mess); 
