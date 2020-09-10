@@ -38,6 +38,9 @@ sp_Card& Deck::operator[](size_t i){
     return *it;
 }
 
+/**
+ * Add a new Card at the beginning of the pile
+ **/
 void Deck::add(sp_Card c, int loc){
     
     list<sp_Card>::iterator it = pile.begin();
@@ -70,6 +73,9 @@ void Deck::add(sp_Card c, int loc){
     }
 }
 
+/**
+ * Return the first Card of the pile 
+ **/
 sp_Card Deck::pick_up(){
     if (pile.empty())
         return nullptr;
@@ -78,6 +84,9 @@ sp_Card Deck::pick_up(){
     return c;
 }
 
+/**
+ * Trade the Card with the id = aId and give it to the front of the Deck in argument
+ **/
 void Deck::give_to(size_t i, Deck& d, int loc){
     if (pile.empty() || pile.size()-1 < i){
         cerr << "***ERROR: Deck::give_to() : No Card to give" << endl;
@@ -115,7 +124,9 @@ void Deck::give_to(size_t i, Deck& d, int loc){
     }
 }
 
-
+/**
+ * Shuffle the pile
+ **/
 void Deck::shuffle(){
     if (!pile.empty()){
         int haz;

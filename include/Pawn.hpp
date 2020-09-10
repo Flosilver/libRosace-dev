@@ -20,12 +20,15 @@ class Pawn : public IMovable<T>
         ~Pawn();
 
         /* Operateurs */
+
         Pawn<T>& operator=(const Pawn<T>& p);
 
         /* accesseur */
+
         const T& getPosition() const;
 
         /* méthode de IMovable */
+
         void move(const T& v);
         void moveTo(const T& v);
 
@@ -66,6 +69,10 @@ Pawn<T>& Pawn<T>::operator=(const Pawn<T>& p){
 }
 
 /* Accesseur */
+
+/**
+ * Renvoie la positon du Pawn
+ * */
 template<typename T>
 const T& Pawn<T>::getPosition() const {
   return position;
